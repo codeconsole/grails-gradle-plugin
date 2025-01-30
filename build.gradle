@@ -75,7 +75,7 @@ java {
 }
 
 dependencies {
-    implementation platform("org.grails:grails-bom:$grailsVersion")
+    //implementation platform("org.grails:grails-bom:$grailsVersion")
 
     // compile grails-gradle-plugin with the Groovy version provided by Gradle
     // to ensure build compatibility with Gradle, currently Groovy 3.0.x
@@ -84,25 +84,25 @@ dependencies {
     compileOnly "org.grails:grails-bootstrap:$grailsVersion", {
         exclude group: 'org.apache.groovy'
         exclude group: 'org.spockframework'
+        exclude group: 'org.slf4j'
     }
-    compileOnly "org.grails:grails-shell:$grailsShellVersion", {
+    implementation "org.grails:grails-shell:$grailsShellVersion", {
         exclude group: 'org.apache.groovy'
         exclude group: 'org.spockframework'
-    }
-
-    runtimeOnly "org.grails:grails-bootstrap:$grailsVersion", {
-        exclude group: 'org.apache.groovy'
-        exclude group: 'org.spockframework'
-    }
-    runtimeOnly "org.grails:grails-shell:$grailsShellVersion", {
-        exclude group: 'org.apache.groovy'
-        exclude group: 'org.spockframework'
+        exclude group: 'org.slf4j'
+        exclude group: 'org.apache.ant'
+        exclude group: 'jline'
+        exclude group: 'org.fusesource.jansi'  
+        exclude group: 'org.springframework.boot', module: 'spring-boot-cli'
     }
 
     implementation "org.grails:grails-gradle-model:$grailsVersion", {
         exclude group: 'org.apache.groovy'
         exclude group: 'org.spockframework'
+        exclude group: 'org.slf4j'
     }
+
+    implementation "org.yaml:snakeyaml:2.3"
 
     implementation "io.github.gradle-nexus:publish-plugin:$gradleNexusPublishPluginVersion"
     implementation "com.bmuschko:gradle-nexus-plugin:$gradleNexusPluginVersion"
